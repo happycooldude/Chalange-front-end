@@ -1,0 +1,12 @@
+body{
+    background-image: url("Images/image.png");
+    background-size: cover;
+}
+
+#container{
+    background-color: white;
+    width: 1100px;
+    height: 680px;
+    margin: 0 auto;
+    margin-top: 1%;
+}
