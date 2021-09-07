@@ -3,10 +3,82 @@ body{
     background-size: cover;
 }
 
-#container{
+.hidden{
+    display: none;
+}
+
+.shown{
+    display: block;
+}
+
+#startContainer{
+    background-image: url("Images/startscherm.png");
+    background-size: cover;
     background-color: white;
     width: 1100px;
     height: 680px;
     margin: 0 auto;
     margin-top: 1%;
+}
+
+#startBTN{
+    border-radius: 5px;
+    width: 140px;
+    height: 45px;
+    background-color: #01b4dc;
+    position: relative;
+    top: 220px;
+    left: 850px;
+}
+
+#vraagContainer{
+    background-color: white;
+    width: 1100px;
+    height: 680px;
+    margin: 0 auto;
+    margin-top: 1%;
+    overflow: auto;
+    border-radius: 40px;
+}
+
+#uitslagContainer{
+    background-color: white;
+    width: 1100px;
+    height: 680px;
+    margin: 0 auto;
+    margin-top: 1%;
+}
+
+#vraag{
+    width: 60%;
+    margin-left: 11%;
+    margin-top: 5%;
+}
+
+#title{
+    color: #01b4dc;
+}
+
+#buttons{
+    margin-left: 10%;
+}
+
+.antwoord{
+    background-color: black;
+    color: white;
+    width: 140px;
+    height: 45px;
+    margin-left: 10px;
+    border-radius: 10px;
+}
+
+.antwoord:hover{
+    background-color: #01b4dc;
+}
+
+#overslaan{
+    margin-left: 20px;
+    background-color: white;
+    color: grey;
+    border-style: none;
 }
