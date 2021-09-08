@@ -13,11 +13,13 @@ const eensBTN = document.getElementById("eens");
 const geenVbeideBTN = document.getElementById("geenVbeide");
 const oneensBTN = document.getElementById("oneens");
 const overslaanBTN = document.getElementById("overslaan");
+const terugBTN = document.getElementById("back");
 
 eensBTN.onclick = checkAnswer;
 geenVbeideBTN.onclick = checkAnswer;
 oneensBTN.onclick = checkAnswer;
-overslaanBTN.onclick = skipQuestion;
+overslaanBTN.onclick = checkAnswer;
+terugBTN.onclick = back;
 
 const numberOfQuestions = subjects.length;
 const title = document.getElementById("title");
@@ -37,20 +39,20 @@ function checkAnswer(){
         title.innerHTML = subjects[currentSubject].title;
         statement.innerHTML = subjects[currentSubject].statement;
     } else {
-        answerArray.pop();
-        vraagArray.pop();
-        title.innerHTML = "Einde"
-        statement.innerHTML = "U heeft alle vragen beantwoord, wilt u nog teruggaan?"
+        document.getElementById("vraagContainer").classList.remove("shown");
+        document.getElementById("vraagContainer").classList.add("hidden");
+        document.getElementById("uitslagContainer").classList.remove("hidden");
+        document.getElementById("uitslagContainer").classList.add("shown");
     }
 
 }
 
-function skipQuestion(){
-    answerArray.push("skip");
-    vraagArray.push(currentSubject);
-    console.log(answerArray);
-    console.log(vraagArray);
-    currentSubject ++;
+function back(){
+    currentSubject --;
     title.innerHTML = subjects[currentSubject].title;
     statement.innerHTML = subjects[currentSubject].statement;
+    answerArray.pop(currentSubject);
+    vraagArray.pop(currentSubject);
+    console.log(answerArray);
+    console.log(vraagArray);
 }

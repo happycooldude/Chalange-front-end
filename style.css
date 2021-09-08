@@ -19,6 +19,7 @@ body{
     height: 680px;
     margin: 0 auto;
     margin-top: 1%;
+    border-radius: 40px;
 }
 
 #startBTN{
@@ -47,12 +48,13 @@ body{
     height: 680px;
     margin: 0 auto;
     margin-top: 1%;
+    border-radius: 40px;
 }
 
 #vraag{
     width: 60%;
     margin-left: 11%;
-    margin-top: 5%;
+    margin-top: 3%;
 }
 
 #title{
@@ -61,6 +63,17 @@ body{
 
 #buttons{
     margin-left: 10%;
+}
+
+#back{
+    position: relative;
+    left: 30px;
+    top: 30px;
+    font-size: 50px;
+}
+
+#back:hover{
+    color: #01b4dc;
 }
 
 .antwoord{
@@ -81,4 +94,8 @@ body{
     background-color: white;
     color: grey;
     border-style: none;
+}
+
+#overslaan:hover{
+    color: #01b4dc;
 }
