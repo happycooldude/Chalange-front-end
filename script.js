@@ -9,9 +9,9 @@ let currentSubject = 0;
 let answerArray = [];
 let vraagArray = [];
 
-const eensBTN = document.getElementById("eens");
+const eensBTN = document.getElementById("pro");
 const geenVbeideBTN = document.getElementById("geenVbeide");
-const oneensBTN = document.getElementById("oneens");
+const oneensBTN = document.getElementById("contra");
 const overslaanBTN = document.getElementById("overslaan");
 const terugBTN = document.getElementById("back");
 
@@ -44,13 +44,31 @@ function checkAnswer(){
         document.getElementById("uitslagContainer").classList.remove("hidden");
         document.getElementById("uitslagContainer").classList.add("shown");
     }
+}
 
+function colorButton() {
+    if (answerArray[currentSubject] == "pro") {
+        eensBTN.style.backgroundColor = "#01b4dc";
+        geenVbeideBTN.style.backgroundColor = "black";
+        oneensBTN.style.backgroundColor = "black";
+    }
+    if (answerArray[currentSubject] == "geenVbeide") {
+        geenVbeideBTN.style.backgroundColor = "#01b4dc";
+        eensBTN.style.backgroundColor = "black";
+        oneensBTN.style.backgroundColor = "black";
+    }
+    if (answerArray[currentSubject] == "contra") {
+        oneensBTN.style.backgroundColor = "#01b4dc";
+        eensBTN.style.backgroundColor = "black";
+        geenVbeideBTN.style.backgroundColor = "black";
+    }
 }
 
 function back(){
     currentSubject --;
     title.innerHTML = subjects[currentSubject].title;
     statement.innerHTML = subjects[currentSubject].statement;
+    colorButton()
     answerArray.pop(currentSubject);
     vraagArray.pop(currentSubject);
     console.log(answerArray);
