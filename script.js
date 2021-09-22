@@ -1,4 +1,4 @@
-function start(){
+function start() {
     document.getElementById("startContainer").classList.remove("shown");
     document.getElementById("startContainer").classList.add("hidden");
     document.getElementById("vraagContainer").classList.remove("hidden");
@@ -28,21 +28,15 @@ const statement = document.getElementById("statement");
 title.innerHTML = subjects[currentSubject].title;
 statement.innerHTML = subjects[currentSubject].statement;
 
-function checkAnswer(){
+function checkAnswer() {
     if (answerArray.length < numberOfQuestions) {
-        console.log(currentSubject);
         answerArray.push(this.id);
         vraagArray.push(currentSubject);
-        console.log(answerArray);
-        console.log(vraagArray);
-        currentSubject ++;
+        currentSubject++;
         title.innerHTML = subjects[currentSubject].title;
         statement.innerHTML = subjects[currentSubject].statement;
     } else {
-        document.getElementById("vraagContainer").classList.remove("shown");
-        document.getElementById("vraagContainer").classList.add("hidden");
-        document.getElementById("uitslagContainer").classList.remove("hidden");
-        document.getElementById("uitslagContainer").classList.add("shown");
+        gotoResults();
     }
 }
 
@@ -64,13 +58,61 @@ function colorButton() {
     }
 }
 
-function back(){
-    currentSubject --;
+function back() {
+    currentSubject--;
     title.innerHTML = subjects[currentSubject].title;
     statement.innerHTML = subjects[currentSubject].statement;
-    colorButton()
+    colorButton();
     answerArray.pop(currentSubject);
     vraagArray.pop(currentSubject);
-    console.log(answerArray);
-    console.log(vraagArray);
+}
+
+function gotoResults() {
+    document.getElementById("vraagContainer").classList.remove("shown");
+    document.getElementById("vraagContainer").classList.add("hidden");
+    document.getElementById("uitslagContainer").classList.remove("hidden");
+    document.getElementById("uitslagContainer").classList.add("shown");
+
+    partyAssignPoints();
+}
+
+function partyAssignPoints() {
+    for (let j in parties) {        // parties[0].name = "PVV"
+        let points = 0
+        let party = parties[j];
+        let currentPartyName = party.name;  // "PVV"
+
+        for (let x in subjects) {       // subjects[0].title = "Bindend referendum"     x = 0 ... 3
+            let currentSubject = subjects[x];
+            // kijk welk antwoord de huidige partij heeft gegevens
+            let currentPartyPosition = null;
+            for (let pos in currentSubject.parties) {
+                if (currentSubject.parties[pos].name === currentPartyName) {
+                    currentPartyPosition = currentSubject.parties[pos].position;
+                }
+            }
+            // kijk of het antwoord van de PVV overeenkomt met mijn gegeven antwoord
+            if (answerArray[x] === currentPartyPosition) {
+                points++;
+            }
+        }
+        parties[j].points = points;
+        
+    }
+
+    //dont question it it works
+    sortPoints();
+    function sortPoints(){
+            parties.sort(function (x, y){
+            return y.points - x.points;
+        });
+        console.table(parties);
+    }
+
+    //laat de lijst met partijen en de punten zien op het scherm
+    for(let g in parties){
+    document.getElementById("uitslag").innerHTML += parties[g].name + ", ";
+    document.getElementById("uitslag").innerHTML += parties[g].points + " punten ";
+    document.getElementById("uitslag").innerHTML += parties[g].size + " zetels " + "<br>";
+    }
 }

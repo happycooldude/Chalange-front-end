@@ -100,3 +100,10 @@ body{
     color: #01b4dc;
 }
 
+#uitslag{
+    height: 600px;
+    width: 1000px;
+    margin-left: 50px;
+    background-color: gray;
+    overflow: auto;
+}
