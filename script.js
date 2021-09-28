@@ -74,14 +74,24 @@ function gotobelangrijk(){
     document.getElementById("vraagContainer").classList.add("hidden");
     document.getElementById("belangrijk").classList.remove("hidden");
     document.getElementById("belangrijk").classList.add("shown");
+    
 }
 
 createImportant();
 
 function createImportant(){
-
+    //maak een grid van 3 breed aan met alle vragen
     for (let index = 0; index < subjects.length; index++) {
-        document.getElementById("belangrijk").innerHTML += subjects[index].title + ", ";
+        var container = document.getElementById("grid");
+        var cell = document.createElement("div");
+        var checkbox = document.createElement("INPUT");
+        checkbox.setAttribute("type", "checkbox");
+        checkbox.setAttribute("value", 1);
+        checkbox.setAttribute("id", index);
+        cell.innerHTML += subjects[index].title + " ";
+
+        container.appendChild(cell);
+        cell.appendChild(checkbox);
     }
 }
 
