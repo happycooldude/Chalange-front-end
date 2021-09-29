@@ -74,10 +74,8 @@ function gotobelangrijk(){
     document.getElementById("vraagContainer").classList.add("hidden");
     document.getElementById("belangrijk").classList.remove("hidden");
     document.getElementById("belangrijk").classList.add("shown");
-    
+    createImportant();
 }
-
-createImportant();
 
 function createImportant(){
     //maak een grid van 3 breed aan met alle vragen
@@ -95,12 +93,26 @@ function createImportant(){
     }
 }
 
+var checkboxArray = [];
+
+function testcheckboxes(){
+    for (let checkboxID = 0; checkboxID < subjects.length; checkboxID++) {
+        var checkbox = document.getElementById(checkboxID);
+        if (checkbox.checked) {
+            checkboxArray.push(subjects[checkboxID].title + " ID " + checkboxID + " VALUE " + checkbox.value)
+        }
+    }
+    console.log(checkboxArray);
+}
+
+
 function gotoResults() {
     document.getElementById("belangrijk").classList.remove("shown");
     document.getElementById("belangrijk").classList.add("hidden");
     document.getElementById("uitslagContainer").classList.remove("hidden");
     document.getElementById("uitslagContainer").classList.add("shown");
-
+    
+    testcheckboxes();
     partyAssignPoints();
 }
 
@@ -126,7 +138,6 @@ function partyAssignPoints() {
             }
         }
         parties[tellerParties].pointsVariable = points;     //Geeft de puntervar aan de parties array, en geeft het de waarde van de punten mee.
-        
     }
 
     //dont question it it works
@@ -141,7 +152,6 @@ function partyAssignPoints() {
     //laat de lijst met partijen en de punten zien op het scherm
     for(let g in parties){
             document.getElementById("uitslag").innerHTML += parties[g].name + ", ";
-            document.getElementById("uitslag").innerHTML += parties[g].pointsVariable + " punten ";
-            document.getElementById("uitslag").innerHTML += parties[g].size + " zetels " + "<br>";
+            document.getElementById("uitslag").innerHTML += parties[g].pointsVariable + " punten " + "<br>";
     }
 }
