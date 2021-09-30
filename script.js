@@ -107,7 +107,7 @@ function testcheckboxes() { //Loop door de checkboxes heen en laat de waardes in
             // checkboxArray.id = checkboxID;
             // checkboxArray.value = checkbox.value;
             // checkboxArray.push(subjects[checkboxID].title + " ID " + checkboxID + " VALUE " + checkbox.value);
-        }else{
+        } else {
             subjects[checkboxID].weight = 1;
         }
     }
@@ -143,7 +143,7 @@ function partyAssignPoints() {
             // kijk of de mening van de partij overeenkomt met het gegeven antwoord
             if (answerArray[tellerSubjects] === currentPartyPosition) { //Als de mening van de partij overeenkomt met het gegeven antwoord
                 points++; //Dan +1 punt bij de variable optellen.
-                if(subjects[tellerSubjects].weight === 2){
+                if (subjects[tellerSubjects].weight === 2) {
                     points++;
                 }
             }
@@ -162,20 +162,27 @@ function partyAssignPoints() {
     }
 
     //laat de lijst met partijen en de punten zien op het scherm
-    
-        if(seculair.checked){
-            alert("seculair is checked");
-            for (let g in parties) {
-                document.getElementById("uitslag").innerHTML += parties[g].name + ", ";
-                document.getElementById("uitslag").innerHTML += parties[g].pointsVariable + " punten " + "<br>";
-            }
+
+
+    if (seculair.checked) {
+        let secular = parties.filter(function (parties) {
+            return parties.secular == true;
+        });
+
+        console.log(secular);
+        for (let g in parties) {
+            document.getElementById("uitslag").innerHTML += parties[g].name + ", ";
+            document.getElementById("uitslag").innerHTML += parties[g].pointsVariable + " punten " + "<br>";
         }
-        if(grotePartij.checked){
-            alert("groot is checked")
-            for (let g in parties) {
-                document.getElementById("uitslag").innerHTML += parties[g].name + ", ";
-                document.getElementById("uitslag").innerHTML += parties[g].pointsVariable + " punten " + "<br>";
-            }
+    } else if (grotePartij.checked) {
+        for (let g in parties) {
+            document.getElementById("uitslag").innerHTML += parties[g].name + ", ";
+            document.getElementById("uitslag").innerHTML += parties[g].pointsVariable + " punten " + "<br>";
         }
-    
+    } else {
+        for (let g in parties) {
+            document.getElementById("uitslag").innerHTML += parties[g].name + ", ";
+            document.getElementById("uitslag").innerHTML += parties[g].pointsVariable + " punten " + "<br>";
+        }
+    }
 }
