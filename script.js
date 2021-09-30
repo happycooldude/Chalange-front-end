@@ -19,6 +19,7 @@ const terugBTN = document.getElementById("back");
 const gotoResult = document.getElementById("gotoResult");
 const seculair = document.getElementById("seculair");
 const grotePartij = document.getElementById("groot");
+const alles = document.getElementById("alles");
 
 eensBTN.onclick = checkAnswer;
 geenVbeideBTN.onclick = checkAnswer;
@@ -169,17 +170,20 @@ function partyAssignPoints() {
             return parties.secular == true;
         });
 
-        console.log(secular);
-        for (let g in parties) {
-            document.getElementById("uitslag").innerHTML += parties[g].name + ", ";
-            document.getElementById("uitslag").innerHTML += parties[g].pointsVariable + " punten " + "<br>";
+        for (let g in secular) {
+            document.getElementById("uitslag").innerHTML += secular[g].name + ", ";
+            document.getElementById("uitslag").innerHTML += secular[g].pointsVariable + " punten " + "<br>";
         }
     } else if (grotePartij.checked) {
+        let big = parties.filter(function (parties) {
+            return parties.size >= groot;
+        });
+
         for (let g in parties) {
-            document.getElementById("uitslag").innerHTML += parties[g].name + ", ";
-            document.getElementById("uitslag").innerHTML += parties[g].pointsVariable + " punten " + "<br>";
+            document.getElementById("uitslag").innerHTML += big[g].name + ", ";
+            document.getElementById("uitslag").innerHTML += big[g].pointsVariable + " punten " + "<br>";
         }
-    } else {
+    } else if(alles.checked) {
         for (let g in parties) {
             document.getElementById("uitslag").innerHTML += parties[g].name + ", ";
             document.getElementById("uitslag").innerHTML += parties[g].pointsVariable + " punten " + "<br>";
