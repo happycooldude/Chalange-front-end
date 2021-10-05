@@ -104,10 +104,6 @@ function testcheckboxes() { //Loop door de checkboxes heen en laat de waardes in
         var checkbox = document.getElementById(checkboxID);
         if (checkbox.checked) {
             subjects[checkboxID].weight = 2;
-            // checkboxArray.question = subjects[checkboxID].title;
-            // checkboxArray.id = checkboxID;
-            // checkboxArray.value = checkbox.value;
-            // checkboxArray.push(subjects[checkboxID].title + " ID " + checkboxID + " VALUE " + checkbox.value);
         } else {
             subjects[checkboxID].weight = 1;
         }
@@ -144,7 +140,7 @@ function partyAssignPoints() {
             // kijk of de mening van de partij overeenkomt met het gegeven antwoord
             if (answerArray[tellerSubjects] === currentPartyPosition) { //Als de mening van de partij overeenkomt met het gegeven antwoord
                 points++; //Dan +1 punt bij de variable optellen.
-                if (subjects[tellerSubjects].weight === 2) {
+                if (subjects[tellerSubjects].weight === 2) {    //als de vraag geselecteerd is als belangrijk tel er nog 1 punt bij op.
                     points++;
                 }
             }
@@ -152,7 +148,7 @@ function partyAssignPoints() {
         parties[tellerParties].pointsVariable = points; //Geeft de puntervar aan de parties array, en geeft het de waarde van de punten mee.
     }
 
-    //NIET AANKOMEN it works !
+    //it just works
     sortPoints();
 
     function sortPoints() {
@@ -162,10 +158,9 @@ function partyAssignPoints() {
         console.table(parties);
     }
 
-    //laat de lijst met partijen en de punten zien op het scherm
+    //laat de lijst met partijen en de punten zien op het scherm en sorteerd afhankelijk welke radio button geselecteerd is.
 
-
-    if (seculair.checked) {
+    if (seculair.checked == true) {
         let secular = parties.filter(function (parties) {
             return parties.secular == true;
         });
@@ -174,7 +169,7 @@ function partyAssignPoints() {
             document.getElementById("uitslag").innerHTML += secular[g].name + ", ";
             document.getElementById("uitslag").innerHTML += secular[g].pointsVariable + " punten " + "<br>";
         }
-    } else if (grotePartij.checked) {
+    } else if (grotePartij.checked == true) {
         let big = parties.filter(function (parties) {
             return parties.size >= groot;
         });
@@ -183,7 +178,7 @@ function partyAssignPoints() {
             document.getElementById("uitslag").innerHTML += big[g].name + ", ";
             document.getElementById("uitslag").innerHTML += big[g].pointsVariable + " punten " + "<br>";
         }
-    } else if(alles.checked) {
+    } else if(alles.checked == true) {
         for (let g in parties) {
             document.getElementById("uitslag").innerHTML += parties[g].name + ", ";
             document.getElementById("uitslag").innerHTML += parties[g].pointsVariable + " punten " + "<br>";
