@@ -101,7 +101,7 @@ body{
 }
 
 #belangrijk{
-    background-image: -moz-linear-gradient(bottom, lightblue 70%, white 50%);
+    background-color: white;
     width: 1100px;
     height: 680px;
     margin: 0 auto;
@@ -124,9 +124,8 @@ body{
 
 #doublepoints{
     position: relative;
-    top: 80px;
     width: 1100px;
-    height: 69%;
+    height: 100%;
     background-color: lightblue;
 }
 
