@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <title>Stemwijzer</title>
 </head>
 
 <body>
-    <div id="startContainer" class="hidden">
+    <div id="startContainer" class="shown">
         <button id="startBTN" onclick="start()">Start</button>
     </div>
 
     <div id="vraagContainer" class="hidden">
-        <i class="fas fa-arrow-circle-left" id="back"></i>
-        <div  id="vraag">
+        <i class="fas fa-arrow-circle-left hidden" id="back"></i>
+        <div id="vraag">
             <h1 id="title"></h1>
             <p id="statement"></p>
         </div>
@@ -35,10 +37,9 @@
 
             <button id="overslaan">Sla deze vraag over</button>
         </div>
-
     </div>
 
-    <div id="belangrijk" class="shown">
+    <div id="belangrijk" class="hidden">
         <h1 id="belangrijkTitle">Belangrijke onderwerpen</h1>
         Gevinke vragen zullen zwaarder meetellen bij het resultaat.
         <button id="gotoResult">Ga verder</button>
@@ -49,7 +50,7 @@
             <h5 id="extraTitle"><b>Extra belangrijke onderwerpen</b></h5>
             <div id="grid"></div>
         </div>
-        
+
     </div>
 
     <div id="uitslagContainer" class="hidden">
@@ -60,6 +61,7 @@
 
 
 </body>
-<script src="testdata.js"></script>
+<script src="data.js"></script>
 <script src="script.js"></script>
+
 </html>

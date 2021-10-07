@@ -8,8 +8,6 @@ function start() {
 const groot = 10;
 let currentSubject = 0;
 let answerArray = [];
-let vraagArray = [];
-
 
 const eensBTN = document.getElementById("pro");
 const geenVbeideBTN = document.getElementById("geenVbeide");
@@ -21,6 +19,10 @@ const seculair = document.getElementById("seculair");
 const grotePartij = document.getElementById("groot");
 const alles = document.getElementById("alles");
 
+const numberOfQuestions = subjects.length;
+const title = document.getElementById("title");
+const statement = document.getElementById("statement");
+
 eensBTN.onclick = checkAnswer;
 geenVbeideBTN.onclick = checkAnswer;
 oneensBTN.onclick = checkAnswer;
@@ -28,17 +30,16 @@ overslaanBTN.onclick = checkAnswer;
 terugBTN.onclick = back;
 gotoResult.onclick = gotoResults;
 
-const numberOfQuestions = subjects.length;
-const title = document.getElementById("title");
-const statement = document.getElementById("statement");
-
 title.innerHTML = subjects[currentSubject].title;
 statement.innerHTML = subjects[currentSubject].statement;
 
 function checkAnswer() {
+    eensBTN.style.backgroundColor = "black";
+    geenVbeideBTN.style.backgroundColor = "black";
+    oneensBTN.style.backgroundColor = "black";
+
     if (answerArray.length < numberOfQuestions) {
         answerArray.push(this.id);
-        vraagArray.push(currentSubject);
         currentSubject++;
         title.innerHTML = subjects[currentSubject].title;
         statement.innerHTML = subjects[currentSubject].statement;
@@ -66,12 +67,13 @@ function colorButton() {
 }
 
 function back() {
-    currentSubject--;
-    title.innerHTML = subjects[currentSubject].title;
-    statement.innerHTML = subjects[currentSubject].statement;
-    colorButton();
-    answerArray.pop(currentSubject);
-    vraagArray.pop(currentSubject);
+    if (currentSubject >= 1) {
+        currentSubject--;
+        title.innerHTML = subjects[currentSubject].title;
+        statement.innerHTML = subjects[currentSubject].statement;
+        colorButton();
+        answerArray.pop(currentSubject);
+    }
 }
 
 function gotobelangrijk() {
@@ -140,7 +142,7 @@ function partyAssignPoints() {
             // kijk of de mening van de partij overeenkomt met het gegeven antwoord
             if (answerArray[tellerSubjects] === currentPartyPosition) { //Als de mening van de partij overeenkomt met het gegeven antwoord
                 points++; //Dan +1 punt bij de variable optellen.
-                if (subjects[tellerSubjects].weight === 2) {    //als de vraag geselecteerd is als belangrijk tel er nog 1 punt bij op.
+                if (subjects[tellerSubjects].weight === 2) { //als de vraag geselecteerd is als belangrijk tel er nog 1 punt bij op.
                     points++;
                 }
             }
@@ -173,12 +175,16 @@ function partyAssignPoints() {
         let big = parties.filter(function (parties) {
             return parties.size >= groot;
         });
-
         for (let g in parties) {
             document.getElementById("uitslag").innerHTML += big[g].name + ", ";
             document.getElementById("uitslag").innerHTML += big[g].pointsVariable + " punten " + "<br>";
         }
-    } else if(alles.checked == true) {
+    } else if (alles.checked == true) {
+        for (let g in parties) {
+            document.getElementById("uitslag").innerHTML += parties[g].name + ", ";
+            document.getElementById("uitslag").innerHTML += parties[g].pointsVariable + " punten " + "<br>";
+        }
+    } else {
         for (let g in parties) {
             document.getElementById("uitslag").innerHTML += parties[g].name + ", ";
             document.getElementById("uitslag").innerHTML += parties[g].pointsVariable + " punten " + "<br>";
